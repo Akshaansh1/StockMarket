@@ -3,6 +3,7 @@ import { userModel } from "../Models/userModel";
 const userRoutes  = express.Router();
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { userMiddleware } from "../Middlewares/userMiddleware";
 
 userRoutes.post('/signup' , async (req , res) => {
     try {
@@ -55,6 +56,12 @@ userRoutes.post('/signin' , async (req , res) => {
             error : e
         })
     }
+})
+
+userRoutes.get('/dashboard' , userMiddleware , (req , res) => {
+    res.json({
+        msg : "Dashboard"
+    })
 })
 
 export default userRoutes;
