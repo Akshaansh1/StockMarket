@@ -2,11 +2,13 @@ import express from "express";
 import userRoutes from "./Routes/userRoutes";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 const app = express();
 
 dotenv.config();
 
 app.use(express.json());
+app.use(cors());
 app.use('/api/user' , userRoutes);
 
 app.get('/' , (req , res) => {
@@ -19,7 +21,7 @@ async function startApp() {
 
         if(connection){
             console.log("Connected to MongoDB");
-            app.listen(3000 , () => {console.log("Listening to Port 3000.")})
+            app.listen(3000, () => {console.log("Listening to Port 3000.")})
         }
     }
 

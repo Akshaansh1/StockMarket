@@ -42,7 +42,8 @@ userRoutes.post('/signin' , async (req , res) => {
         }
 
         const token = jwt.sign({
-            id : user._id.toString()
+            id : user._id.toString(),
+            firstname: user.firstname
         } , process.env.JWT_TOKEN as string);
 
         res.json({
